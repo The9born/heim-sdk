@@ -1,0 +1,44 @@
+{
+  "name": "heim-sdk",
+  "version": "0.0.199",
+  "description": "JavaScript/TypeScript SDK for interacting with the Heim blockchain and multi-party computation signers.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "ethereum",
+    "heim",
+    "mpc",
+    "sdk",
+    "crypto",
+    "cosmos"
+  ],
+  "homepage": "https://github.com/The9born/heim-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/The9born/heim-sdk/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The9born/heim-sdk.git"
+  },
+  "scripts": {
+    "build": "lerna run build",
+    "test": "lerna run test"
+  },
+  "devDependencies": {
+    "lerna": "^8.1.9"
+  },
+  "engines": {
+    "node": "^16.20 || ^18.16 || >=20"
+  },
+  "packageManager": "yarn@1.22.22",
+  "dependencies": {
+    "eciesjs": "^0.4.13",
+    "typescript": "^5.7.3"
+  },
+  "resolutions": {
+    "rpc-websockets": "7.5.1"
+  }
+}

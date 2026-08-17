@@ -1,0 +1,15 @@
+export enum Network {
+  Bitcoin = "btc--btc-mainnet",
+  BitcoinSignet = "btc--btc-signet",
+  Ethereum = "evm--1",
+  Sepolia = "evm--11155111",
+  Heim = "cosmos--heim",
+  CosmosHub = "cosmos--cosmoshub-4",
+  Osmosis = "cosmos--osmosis-1",
+  OsmosisTestnet = "cosmos--osmo-test-5",
+  Agoric = "cosmos--agoric-3",
+  Lightning = "ltc--ltc-mainnet",
+  LightningSignet = "ltc--ltc-signet",
+  Solana = "sol--101",
+  TSolana = "sol--103",
+}

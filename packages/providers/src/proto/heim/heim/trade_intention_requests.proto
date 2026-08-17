@@ -1,0 +1,18 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message TradeIntentionRequests {
+  uint64 id = 1;
+  string sellToken = 2; 
+  string buyToken = 3; 
+  string sellVolume = 4; 
+  string minBuyVolume = 5; 
+  string broker = 6; 
+  string sellNetworkId = 7;
+  string buyNetworkId = 8;
+  string creator = 9;
+  bool isResponded = 10;
+  bool isFinalized = 11;
+}

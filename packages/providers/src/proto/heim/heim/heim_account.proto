@@ -1,0 +1,22 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+import "heim/venue.proto";
+
+message HeimAccount {
+  string index = 1;
+  string requesterAddress = 2; 
+  string responderAddress = 3;
+  bool openRequest = 4;
+  uint64 requestIndex = 5;
+  uint64 responseIndex = 6; 
+  string workerAddress = 7;
+  Venue workerVenue = 8;
+  map<string,Venue> ownedVenue = 9;
+  string heimName = 10;
+  uint32 requestType = 11;
+}
+
+
+

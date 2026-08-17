@@ -1,0 +1,12 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message SignatureResponses {
+  uint64 id = 1;
+  uint64 signatureRequestIndex = 2; 
+  uint64 blockHeight = 3;  
+  string r2 = 4;
+  string c3 = 5;
+}

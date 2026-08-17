@@ -1,0 +1,12 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message OwnedAccount {
+  
+  string owner = 1; 
+  string ecdsaPublicKey = 2; 
+  string eddsaPublicKey = 3; 
+  string requesterAddress = 4; 
+}

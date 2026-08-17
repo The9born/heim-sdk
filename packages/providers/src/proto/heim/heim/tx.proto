@@ -1,0 +1,322 @@
+syntax = "proto3";
+
+package heim.heim;
+
+import "heim/cosigner.proto";
+import "heim/freebie.proto";
+
+import "heim/trade_intention_requests.proto";
+import "heim/trade_intention_responses.proto";
+import "heim/institutional_proof.proto";
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+// Msg defines the Msg service.
+service Msg {
+  rpc CreateRequesterAccount    (MsgCreateRequesterAccount   ) returns (MsgCreateRequesterAccountResponse   );
+  rpc CreateResponderAccount    (MsgCreateResponderAccount   ) returns (MsgCreateResponderAccountResponse   );
+  rpc SignatureRequestPrimary   (MsgSignatureRequestPrimary  ) returns (MsgSignatureRequestPrimaryResponse  );
+  rpc SignatureResponse         (MsgSignatureResponse        ) returns (MsgSignatureResponseResponse        );
+  rpc SignatureCancel           (MsgSignatureCancel          ) returns (MsgSignatureCancelResponse          );
+  rpc MintWelcomeToken          (MsgMintWelcomeToken         ) returns (MsgMintWelcomeTokenResponse         );
+  rpc ExchangeGasToken          (MsgExchangeGasToken         ) returns (MsgExchangeGasTokenResponse         );
+  rpc AddVenueScope             (MsgAddVenueScope            ) returns (MsgAddVenueScopeResponse            );
+  rpc TerminateVenueScope       (MsgTerminateVenueScope      ) returns (MsgTerminateVenueScopeResponse      );
+  rpc UpdateVenueScope          (MsgUpdateVenueScope         ) returns (MsgUpdateVenueScopeResponse         );
+  rpc ResolveAdminRequest       (MsgResolveAdminRequest      ) returns (MsgResolveAdminRequestResponse      );
+  rpc UpdateFreebie             (MsgUpdateFreebie            ) returns (MsgUpdateFreebieResponse            );
+  rpc SignatureRequestSecondary (MsgSignatureRequestSecondary) returns (MsgSignatureRequestSecondaryResponse);
+  rpc RequestCreateOwnedAccount (MsgRequestCreateOwnedAccount) returns (MsgRequestCreateOwnedAccountResponse);
+  rpc RespondCreateOwnedAccount (MsgRespondCreateOwnedAccount) returns (MsgRespondCreateOwnedAccountResponse);
+  rpc SignatureRequestOwned     (MsgSignatureRequestOwned    ) returns (MsgSignatureRequestOwnedResponse    );
+  rpc SignatureResponseOwned    (MsgSignatureResponseOwned   ) returns (MsgSignatureResponseOwnedResponse   );
+
+rpc CreateTradeIntentionRequests(MsgCreateTradeIntentionRequests) returns (MsgCreateTradeIntentionRequestsResponse);
+  rpc UpdateTradeIntentionRequests(MsgUpdateTradeIntentionRequests) returns (MsgUpdateTradeIntentionRequestsResponse);
+  rpc DeleteTradeIntentionRequests(MsgDeleteTradeIntentionRequests) returns (MsgDeleteTradeIntentionRequestsResponse);
+rpc CreateTradeIntentionResponses(MsgCreateTradeIntentionResponses) returns (MsgCreateTradeIntentionResponsesResponse);
+  rpc UpdateTradeIntentionResponses(MsgUpdateTradeIntentionResponses) returns (MsgUpdateTradeIntentionResponsesResponse);
+  rpc DeleteTradeIntentionResponses(MsgDeleteTradeIntentionResponses) returns (MsgDeleteTradeIntentionResponsesResponse);
+  rpc BrokerMatchIntentions(MsgBrokerMatchIntentions) returns (MsgBrokerMatchIntentionsResponse);
+  rpc FinalizeTradeIntentions(MsgFinalizeTradeIntentions) returns (MsgFinalizeTradeIntentionsResponse);
+rpc SubmitInstitutionalProof(MsgSubmitInstitutionalProof) returns (MsgSubmitInstitutionalProofResponse);
+  rpc VerifyInstitutionalProof(MsgVerifyInstitutionalProof) returns (MsgVerifyInstitutionalProofResponse);
+  rpc BuyTicket(MsgBuyTicket) returns (MsgBuyTicketResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+message MsgCreateRequesterAccount {
+  string    creator          = 1;
+  string    responderAddress = 2;
+  CoSignerA cosigner         = 3;
+}
+
+message MsgCreateRequesterAccountResponse {}
+
+message MsgCreateResponderAccount {
+  string    creator          = 1;
+  string    heimAddress      = 2;
+  CoSignerB cosigner         = 3;
+  string    secondaryAddress = 4;
+  CoSignerB secondCosigner   = 5;
+  string    agentAddress     = 6;
+  string    heimName         = 7;
+}
+
+message MsgCreateResponderAccountResponse {}
+
+message MsgSignatureRequestPrimary {
+  string creator                  = 1;
+  string networkId                = 2;
+  string transaction              = 3;
+  string r1                       = 4;
+  string virtualScreenAddress     = 5;
+  string virtualScreenTransaction = 6;
+}
+
+message MsgSignatureRequestPrimaryResponse {}
+
+message MsgSignatureCancel {
+  string creator = 1;
+}
+
+message MsgSignatureCancelResponse {}
+
+message MsgSignatureResponse {
+  string creator               = 1;
+  uint64 signatureRequestIndex = 2;
+  string r2                    = 3;
+  string c3                    = 4;
+}
+
+message MsgSignatureResponseResponse {}
+
+message MsgMintWelcomeToken {
+  string creator = 1;
+  uint64 amount  = 2;
+}
+
+message MsgMintWelcomeTokenResponse {}
+
+message MsgExchangeGasToken {
+  string creator      = 1;
+  uint64 amount       = 2;
+  bool   isGasTokenIn = 3;
+}
+
+message MsgExchangeGasTokenResponse {}
+
+message MsgAddVenueScope {
+           string creator            = 1;
+           string ownedAddress       = 2;
+           string description        = 3;
+  repeated string personalNetworkIds = 4;
+  repeated string personalAliases    = 5;
+  repeated string personalAddresses  = 6;
+           uint64 amountLimit        = 7;
+           uint32 start              = 8;
+           int32  end                = 9;
+}
+
+message MsgAddVenueScopeResponse {}
+
+message MsgTerminateVenueScope {
+  string creator         = 1;
+  string ownedAddress    = 2;
+  uint32 venueScopeIndex = 3;
+}
+
+message MsgTerminateVenueScopeResponse {}
+
+message MsgUpdateVenueScope {
+           string creator           = 1;
+           string ownedAddress      = 2;
+           uint32 venueScopeIndex   = 3;
+           string description       = 4;
+  repeated string personalNetworkIds = 5;
+  repeated string personalAliases    = 6;
+  repeated string personalAddresses  = 7;
+           uint64 amountLimit       = 8;
+           int32  end               = 9;
+}
+
+message MsgUpdateVenueScopeResponse {}
+
+message MsgResolveAdminRequest {
+  string creator = 1;
+  bool   confirm = 2;
+}
+
+message MsgResolveAdminRequestResponse {}
+
+message MsgUpdateFreebie {
+  string creator     = 1;
+  string ownedAddress= 2;
+  bool   active      = 3;
+  uint32 dayLength   = 4;
+  uint64 amountLimit = 5;
+}
+
+message MsgUpdateFreebieResponse {}
+
+message MsgSignatureRequestSecondary {
+  string creator                  = 1;
+  string networkId                = 2;
+  string transaction              = 3;
+  string r1                       = 4;
+  string virtualScreenAddress     = 5;
+  string virtualScreenTransaction = 6;
+  int32  venueScopeIndex          = 7;
+  string recipientToken           = 8;
+  string presignInfo              = 9;
+}
+
+message MsgSignatureRequestSecondaryResponse {
+  uint64 requestIndex = 1;
+  uint32 venueError = 2;
+
+}
+
+message MsgRequestCreateOwnedAccount {
+  string creator               = 1;
+  string ecdsaPublicKey        = 2;
+  string eddsaPublicKey        = 3;
+  string ownedAccountRequester = 4;
+}
+
+message MsgRequestCreateOwnedAccountResponse {}
+
+message MsgRespondCreateOwnedAccount {
+  string creator = 1;
+}
+
+message MsgRespondCreateOwnedAccountResponse {}
+
+message MsgSignatureRequestOwned {
+  string creator         = 1;
+  string r1              = 2;
+  string transaction              = 3;
+  string networkId       = 4;
+  int32  venueScopeIndex = 5;
+}
+
+message MsgSignatureRequestOwnedResponse {}
+
+message MsgSignatureResponseOwned {
+  string creator            = 1;
+  string signatureRequestId = 2;
+  string r2                 = 3;
+  string c3                 = 4;
+}
+
+message MsgSignatureResponseOwnedResponse {}
+
+
+message MsgCreateTradeIntentionRequests {
+  string creator = 1;
+  string sellToken = 2;
+  string buyToken = 3;
+  string sellVolume = 4;
+  string minBuyVolume = 5;
+  string broker = 6;
+  string sellNetworkId = 7;
+  string buyNetworkId = 8;
+}
+
+message MsgCreateTradeIntentionRequestsResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateTradeIntentionRequests {
+  string creator = 1;
+  uint64 id = 2;
+  string sellToken = 3;
+  string buyToken = 4;
+  string sellVolume = 5;
+  string minBuyVolume = 6;
+  string broker = 7;
+}
+
+message MsgUpdateTradeIntentionRequestsResponse {}
+
+message MsgDeleteTradeIntentionRequests {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteTradeIntentionRequestsResponse {}
+
+message MsgCreateTradeIntentionResponses {
+  string creator = 1;
+  string intentionRequestIndex = 2;
+}
+
+message MsgCreateTradeIntentionResponsesResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateTradeIntentionResponses {
+  string creator = 1;
+  uint64 id = 2;
+  string intentionRequestIndex = 3;
+}
+
+message MsgUpdateTradeIntentionResponsesResponse {}
+
+message MsgDeleteTradeIntentionResponses {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteTradeIntentionResponsesResponse {}
+
+message MsgBrokerMatchIntentions {
+  string creator = 1;
+  string intentionRequestIndex0 = 2;
+  string intentionRequestIndex1 = 3;
+  string brokerAddress = 4;
+  string txHash = 5;
+  string blockHash = 6;
+}
+
+message MsgBrokerMatchIntentionsResponse {
+}
+
+message MsgFinalizeTradeIntentions {
+  string creator = 1;
+  string intentionRequestIndex = 2;
+}
+
+message MsgFinalizeTradeIntentionsResponse {
+}
+
+message MsgSubmitInstitutionalProof {
+  string creator = 1;
+  string proof = 2;
+  string stage = 3;
+  string proofState = 4;
+}
+
+message MsgSubmitInstitutionalProofResponse {
+  uint64 id = 1;
+}
+
+message MsgVerifyInstitutionalProof {
+  string creator = 1;
+  uint64 id = 2;
+  uint32 errorBit = 3;
+}
+
+message MsgVerifyInstitutionalProofResponse {
+}
+
+message MsgBuyTicket {
+  string creator = 1;
+  uint64 amount = 2;
+  string ticketLeaf = 3;
+}
+
+message MsgBuyTicketResponse {
+}
+
+// this line is used by starport scaffolding # proto/tx/message

@@ -1,0 +1,16 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message HeimInstitutionalAccount {
+  string index = 1; 
+  bool openRequest = 2; 
+  uint64 requestIndex = 3; 
+  uint64 responseIndex = 4;
+  string proofState = 5; 
+  uint64 currentGProofIndex = 6;
+
+  repeated uint64 s1IndexList = 7;
+}
+

@@ -1,0 +1,14 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message InstitutionalProof {
+  uint64 id = 1;
+  string proof = 2; 
+  string stage = 3; 
+  string requesterAddress = 4; 
+  string creator = 5;
+  uint32 errorBit = 6;
+  string proofState = 7;
+}

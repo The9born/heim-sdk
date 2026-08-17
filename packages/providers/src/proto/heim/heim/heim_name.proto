@@ -1,0 +1,10 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message HeimName {
+  string index = 1; 
+  string creator = 2;
+}
+

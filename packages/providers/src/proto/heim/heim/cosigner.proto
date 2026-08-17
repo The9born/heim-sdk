@@ -1,0 +1,16 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message CoSignerA {
+  string ecdsaPublic = 1;
+	string ecdsaPrivateEncrypted = 2;
+  string ed25519Public = 3;
+	string paillierPublic = 4;
+}
+
+message CoSignerB {
+  string ecdsaPublic = 1;
+  string ed25519Public = 2;
+}

@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package heim.heim;
+
+import "gogoproto/gogo.proto";
+import "heim/params.proto";
+import "heim/requester_account.proto";
+import "heim/responder_account.proto";
+import "heim/heim_account.proto";
+import "heim/signature_requests.proto";
+import "heim/signature_responses.proto";
+import "heim/heim_name.proto";
+import "heim/trade_intention_requests.proto";
+import "heim/trade_intention_responses.proto";
+import "heim/institutional_proof.proto";
+import "heim/heim_institutional_account.proto";
+import "heim/merkle_leaf.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+// GenesisState defines the heim module's genesis state.
+message GenesisState {
+           Params             params                  =  1 [(gogoproto.nullable) = false];
+  repeated RequesterAccount   requesterAccountList    =  2 [(gogoproto.nullable) = false];
+  repeated ResponderAccount   responderAccountList    =  3 [(gogoproto.nullable) = false];
+  repeated HeimAccount        heimAccountList         =  4 [(gogoproto.nullable) = false];
+  repeated SignatureRequests  signatureRequestsList   =  5 [(gogoproto.nullable) = false];
+           uint64             signatureRequestsCount  =  6;
+  repeated SignatureResponses signatureResponsesList  =  7 [(gogoproto.nullable) = false];
+           uint64             signatureResponsesCount =  8;
+  repeated HeimName           heimNameList            =  9 [(gogoproto.nullable) = false];
+  repeated TradeIntentionRequests tradeIntentionRequestsList = 10 [(gogoproto.nullable) = false];
+  uint64 tradeIntentionRequestsCount = 11;
+  repeated TradeIntentionResponses tradeIntentionResponsesList = 12 [(gogoproto.nullable) = false];
+  uint64 tradeIntentionResponsesCount = 13;
+  repeated InstitutionalProof institutionalProofList = 14 [(gogoproto.nullable) = false];
+  uint64 institutionalProofCount = 15;
+  repeated HeimInstitutionalAccount heimInstitutionalAccountList = 16 [(gogoproto.nullable) = false];
+  repeated MerkleLeaf merkleLeafList = 17 [(gogoproto.nullable) = false];
+  uint64 merkleLeafCount = 18;
+  // this line is used by starport scaffolding # genesis/proto/state
+}
+

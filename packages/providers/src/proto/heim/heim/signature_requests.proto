@@ -1,0 +1,18 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+import "heim/signature_requests_extra.proto";
+
+message SignatureRequests {
+  uint64         id                            = 1;
+  string         heimAddress                   = 2; 
+  uint64         blockHeight                   = 3; 
+  string         networkId                     = 4; 
+  string         transaction                   = 5; 
+  string         r1                            = 6;
+  string         virtualScreenAddress          = 7;
+  string         virtualScreenTransaction      = 8;
+  SignatureRequestSecondaryExtra secondary          = 9;
+}

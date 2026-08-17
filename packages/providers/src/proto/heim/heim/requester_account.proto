@@ -1,0 +1,13 @@
+syntax = "proto3";
+package heim.heim;
+
+import "heim/cosigner.proto";
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message RequesterAccount {
+  string index = 1; 
+  string heimAddress = 2;
+  string responderAddress = 3; 
+  CoSignerA cosigner = 4;
+}

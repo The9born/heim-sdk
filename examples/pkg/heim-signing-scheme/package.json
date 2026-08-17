@@ -1,0 +1,16 @@
+{
+  "name": "heim-signing-scheme",
+  "type": "module",
+  "version": "1.1.4",
+  "license": "MIT",
+  "files": [
+    "heim_signing_scheme_bg.wasm",
+    "heim_signing_scheme.js",
+    "heim_signing_scheme.d.ts"
+  ],
+  "main": "heim_signing_scheme.js",
+  "types": "heim_signing_scheme.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message SignatureRequestSecondaryExtra {
+  int32 venueScopeIndex                       = 1;
+  string recipientToken                       = 2;
+  uint32 venueScopeError                      = 3;
+  string presignInfo                          = 4;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+import "heim/venue_param_scope.proto";
+import "heim/freebie.proto";
+
+message Venue {
+  string agentAddress                 = 1;
+  repeated VenueParamScope venueScope = 2;
+  Freebie freebie                     = 3;
+}

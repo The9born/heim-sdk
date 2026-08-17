@@ -1,0 +1,9 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message MerkleLeaf {
+  uint64 index = 1;
+  string leaf = 2;
+}

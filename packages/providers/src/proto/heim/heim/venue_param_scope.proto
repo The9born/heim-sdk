@@ -1,0 +1,21 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message VenueParamScope {
+  string description = 1;
+  // map<string,ReceiverMap> personalReceivers = 2;
+  // map<string,bool> publicReceivers = 3;
+  repeated string personalNetworkIds = 2;
+  repeated string personalAliases    = 3;
+  repeated string personalAddresses  = 4;
+
+  uint64 amountLimit = 5;
+  uint32 start = 6;
+  int32 end = 7;
+}
+
+message ReceiverMap {
+  map<string,string> mapper = 1;
+}

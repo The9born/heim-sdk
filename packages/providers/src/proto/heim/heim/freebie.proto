@@ -1,0 +1,12 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+
+message Freebie {
+  bool active = 1;
+  uint32 dayLength = 2;
+  uint64 amountLimit = 3;
+  uint64 currentAllowance = 4;
+}

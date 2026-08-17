@@ -1,0 +1,38 @@
+import {
+  getProvider,
+  heimChainSignerResponder,
+  heimChainSignerRequester,
+  heimChainSignerOwnedAccount,
+  getQuerier,
+} from "../stubs";
+import { Network } from "@the9born/chains";
+import Long from "long";
+
+const main = async () => {
+  const requesterProvider = await getProvider(heimChainSignerRequester);
+  const ownedAddress = heimChainSignerOwnedAccount.getAddress();
+
+  console.log({ ownedAddress });
+
+  if (true) {
+    const responderProvider = await getProvider(heimChainSignerResponder);
+    const heimResponse = await responderProvider.addVenueScope({
+      ownedAddress,
+      description: "Eat in BKK and Sweden",
+      personalNetworkIds: [Network.Sepolia, Network.Sepolia],
+      personalAliases: ["Rath", "Viktor"],
+      personalAddresses: [
+        "0x3A2C225bACD2BAF4d01fdC778495720ee4793548",
+        "0x3A2C225bACD2BAF4d01fdC778495720ee4793548",
+      ],
+      amountLimit: Long.fromString("100000000000000000"),
+      start: 0,
+      end: -1,
+    });
+    console.log({ heimResponse });
+  }
+
+  await requesterProvider.resolveAdminRequest(true);
+};
+
+main();

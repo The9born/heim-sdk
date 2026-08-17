@@ -1,0 +1,10 @@
+syntax = "proto3";
+package heim.heim;
+
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+message TradeIntentionResponses {
+  uint64 id = 1;
+  string intentionRequestIndex = 2; 
+  string creator = 3;
+}

@@ -1,0 +1,401 @@
+syntax = "proto3";
+
+package heim.heim;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "heim/params.proto";
+import "heim/requester_account.proto";
+import "heim/responder_account.proto";
+import "heim/heim_account.proto";
+import "heim/signature_requests.proto";
+import "heim/signature_responses.proto";
+import "heim/heim_name.proto";
+import "google/protobuf/any.proto";
+import "heim/trade_intention_requests.proto";
+import "heim/trade_intention_responses.proto";
+import "heim/institutional_proof.proto";
+import "heim/heim_institutional_account.proto";
+import "heim/merkle_leaf.proto";
+// this line is used by starport scaffolding # 1
+
+//option go_package = "github.com/The9born/heim/x/heim/types";
+option go_package = "github.com/The9born/heim/x/heim/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/params";
+  
+  }
+  
+  // Queries a list of RequesterAccount items.
+  rpc RequesterAccount    (QueryGetRequesterAccountRequest) returns (QueryGetRequesterAccountResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/requester_account/{index}";
+  
+  }
+  rpc RequesterAccountAll (QueryAllRequesterAccountRequest) returns (QueryAllRequesterAccountResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/requester_account";
+  
+  }
+  
+  // Queries a list of ResponderAccount items.
+  rpc ResponderAccount    (QueryGetResponderAccountRequest) returns (QueryGetResponderAccountResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/responder_account/{index}";
+  
+  }
+  rpc ResponderAccountAll (QueryAllResponderAccountRequest) returns (QueryAllResponderAccountResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/responder_account";
+  
+  }
+  
+  // Queries a list of HeimAccount items.
+  rpc HeimAccount    (QueryGetHeimAccountRequest) returns (QueryGetHeimAccountResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/heim_account/{index}";
+  
+  }
+  rpc HeimAccountAll (QueryAllHeimAccountRequest) returns (QueryAllHeimAccountResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/heim_account";
+  
+  }
+  
+  // Queries a list of SignatureRequests items.
+  rpc SignatureRequests    (QueryGetSignatureRequestsRequest) returns (QueryGetSignatureRequestsResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/signature_requests/{id}";
+  
+  }
+  rpc SignatureRequestsAll (QueryAllSignatureRequestsRequest) returns (QueryAllSignatureRequestsResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/signature_requests";
+  
+  }
+  
+  // Queries a list of SignatureResponses items.
+  rpc SignatureResponses    (QueryGetSignatureResponsesRequest) returns (QueryGetSignatureResponsesResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/signature_responses/{id}";
+  
+  }
+  rpc SignatureResponsesAll (QueryAllSignatureResponsesRequest) returns (QueryAllSignatureResponsesResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/signature_responses";
+  
+  }
+  
+  // Queries a list of HeimName items.
+  rpc HeimName    (QueryGetHeimNameRequest) returns (QueryGetHeimNameResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/heim_name/{index}";
+  
+  }
+  rpc HeimNameAll (QueryAllHeimNameRequest) returns (QueryAllHeimNameResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/heim_name";
+  
+  }
+  
+  // Queries a list of GetPendingAction items.
+  rpc GetPendingAction (QueryGetPendingActionRequest) returns (QueryGetPendingActionResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/get_pending_action/{address}";
+  
+  }
+  
+  // Queries a list of GetSignatureRequestOwned items.
+  rpc GetSignatureRequestOwned (QueryGetSignatureRequestOwnedRequest) returns (QueryGetSignatureRequestOwnedResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/get_signature_request_owned/{id}";
+  
+  }
+  
+  // Queries a list of GetSignatureResponseOwned items.
+  rpc GetSignatureResponseOwned (QueryGetSignatureResponseOwnedRequest) returns (QueryGetSignatureResponseOwnedResponse) {
+    option (google.api.http).get = "/The9born/heim/heim/get_signature_response_owned/{id}";
+  
+  }
+
+// Queries a TradeIntentionRequests by id.
+	rpc TradeIntentionRequests(QueryGetTradeIntentionRequestsRequest) returns (QueryGetTradeIntentionRequestsResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/trade_intention_requests/{id}";
+	}
+
+	// Queries a list of TradeIntentionRequests items.
+	rpc TradeIntentionRequestsAll(QueryAllTradeIntentionRequestsRequest) returns (QueryAllTradeIntentionRequestsResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/trade_intention_requests";
+	}
+
+// Queries a TradeIntentionResponses by id.
+	rpc TradeIntentionResponses(QueryGetTradeIntentionResponsesRequest) returns (QueryGetTradeIntentionResponsesResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/trade_intention_responses/{id}";
+	}
+
+	// Queries a list of TradeIntentionResponses items.
+	rpc TradeIntentionResponsesAll(QueryAllTradeIntentionResponsesRequest) returns (QueryAllTradeIntentionResponsesResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/trade_intention_responses";
+	}
+
+// Queries a InstitutionalProof by id.
+	rpc InstitutionalProof(QueryGetInstitutionalAccountRequest) returns (QueryGetInstitutionalAccountResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/institutional_proof/{id}";
+	}
+
+	// Queries a list of InstitutionalProof items.
+	rpc InstitutionalAccountAll(QueryAllInstitutionalAccountRequest) returns (QueryAllInstitutionalAccountResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/institutional_proof";
+	}
+
+// Queries a HeimInstitutionalAccount by index.
+	rpc HeimInstitutionalAccount(QueryGetHeimInstitutionalAccountRequest) returns (QueryGetHeimInstitutionalAccountResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/heim_institutional_account/{index}";
+	}
+
+	// Queries a list of HeimInstitutionalAccount items.
+	rpc HeimInstitutionalAccountAll(QueryAllHeimInstitutionalAccountRequest) returns (QueryAllHeimInstitutionalAccountResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/heim_institutional_account";
+	}
+
+// Queries a MerkleLeaf by id.
+	rpc MerkleLeaf(QueryGetMerkleLeafRequest) returns (QueryGetMerkleLeafResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/merkle_leaf/{id}";
+	}
+
+	// Queries a list of MerkleLeaf items.
+	rpc MerkleLeafAll(QueryAllMerkleLeafRequest) returns (QueryAllMerkleLeafResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/merkle_leaf";
+	}
+
+	// Queries a list of IsSpentNullifier items.
+	rpc IsSpentNullifier(QueryIsSpentNullifierRequest) returns (QueryIsSpentNullifierResponse) {
+		option (google.api.http).get = "/The9born/heim/heim/is_spent_nullifier/{nullifier}";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetRequesterAccountRequest {
+  string index = 1;
+}
+
+message QueryGetRequesterAccountResponse {
+  RequesterAccount requesterAccount = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllRequesterAccountRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllRequesterAccountResponse {
+  repeated RequesterAccount                       requesterAccount = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination       = 2;
+}
+
+message QueryGetResponderAccountRequest {
+  string index = 1;
+}
+
+message QueryGetResponderAccountResponse {
+  ResponderAccount responderAccount = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllResponderAccountRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllResponderAccountResponse {
+  repeated ResponderAccount                       responderAccount = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination       = 2;
+}
+
+message QueryGetHeimAccountRequest {
+  string index = 1;
+}
+
+message QueryGetHeimAccountResponse {
+  HeimAccount heimAccount = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllHeimAccountRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllHeimAccountResponse {
+  repeated HeimAccount                            heimAccount = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination  = 2;
+}
+
+message QueryGetSignatureRequestsRequest {
+  uint64 id = 1;
+}
+
+message QueryGetSignatureRequestsResponse {
+  SignatureRequests SignatureRequests = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllSignatureRequestsRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSignatureRequestsResponse {
+  repeated SignatureRequests                      SignatureRequests = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination        = 2;
+}
+
+message QueryGetSignatureResponsesRequest {
+  uint64 id = 1;
+}
+
+message QueryGetSignatureResponsesResponse {
+  SignatureResponses SignatureResponses = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllSignatureResponsesRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSignatureResponsesResponse {
+  repeated SignatureResponses                     SignatureResponses = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination         = 2;
+}
+
+message QueryGetHeimNameRequest {
+  string index = 1;
+}
+
+message QueryGetHeimNameResponse {
+  HeimName heimName = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllHeimNameRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllHeimNameResponse {
+  repeated HeimName                               heimName   = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetPendingActionRequest {
+  string address = 1;
+}
+
+message QueryGetPendingActionResponse {
+  string              action  = 1;
+  google.protobuf.Any payload = 2;
+}
+
+message QueryGetSignatureRequestOwnedRequest {
+  string id = 1;
+}
+
+message QueryGetSignatureRequestOwnedResponse {
+  SignatureRequests signatureRequest = 1;
+}
+
+message QueryGetSignatureResponseOwnedRequest {
+  string id = 1;
+}
+
+message QueryGetSignatureResponseOwnedResponse {
+  SignatureResponses signatureResponse = 1;
+}
+
+message QueryGetTradeIntentionRequestsRequest {
+	uint64 id = 1;
+}
+
+message QueryGetTradeIntentionRequestsResponse {
+	TradeIntentionRequests TradeIntentionRequests = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllTradeIntentionRequestsRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllTradeIntentionRequestsResponse {
+	repeated TradeIntentionRequests TradeIntentionRequests = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetTradeIntentionResponsesRequest {
+	uint64 id = 1;
+}
+
+message QueryGetTradeIntentionResponsesResponse {
+	TradeIntentionResponses TradeIntentionResponses = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllTradeIntentionResponsesRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllTradeIntentionResponsesResponse {
+	repeated TradeIntentionResponses TradeIntentionResponses = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetInstitutionalAccountRequest {
+	uint64 id = 1;
+}
+
+message QueryGetInstitutionalAccountResponse {
+	InstitutionalProof InstitutionalProof = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllInstitutionalAccountRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllInstitutionalAccountResponse {
+	repeated InstitutionalProof InstitutionalProof = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetHeimInstitutionalAccountRequest {
+	  string index = 1;
+
+}
+
+message QueryGetHeimInstitutionalAccountResponse {
+	HeimInstitutionalAccount heimInstitutionalAccount = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllHeimInstitutionalAccountRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllHeimInstitutionalAccountResponse {
+	repeated HeimInstitutionalAccount heimInstitutionalAccount = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetMerkleLeafRequest {
+	uint64 id = 1;
+}
+
+message QueryGetMerkleLeafResponse {
+	MerkleLeaf MerkleLeaf = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMerkleLeafRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMerkleLeafResponse {
+	repeated MerkleLeaf MerkleLeaf = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryIsSpentNullifierRequest {
+  string nullifier = 1;
+}
+
+message QueryIsSpentNullifierResponse {
+  bool isSpent = 1;
+}
+
+// this line is used by starport scaffolding # 3

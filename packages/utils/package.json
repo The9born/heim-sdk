@@ -1,0 +1,47 @@
+{
+  "name": "@the9born/utils",
+  "version": "0.0.199",
+  "description": "Utility functions and helpers for Heim SDK",
+  "keywords": [
+    "heim",
+    "utils",
+    "bip32",
+    "ethers"
+  ],
+  "author": "The9born",
+  "homepage": "https://github.com/The9born/heim-sdk/tree/main/packages/utils#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The9born/heim-sdk.git"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "jest --config=../../jest.config.js",
+    "build": "tsc"
+  },
+  "bugs": {
+    "url": "https://github.com/The9born/heim-sdk/issues"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@scure/bip32": "^1.6.0",
+    "ethers": "5.7.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

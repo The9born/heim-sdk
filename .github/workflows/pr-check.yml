@@ -1,0 +1,60 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install Protocol Buffers
+        run: |
+          PROTOC_ZIP=protoc-21.12-linux-x86_64.zip
+          curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v21.12/$PROTOC_ZIP
+          sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
+          sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
+          rm -f $PROTOC_ZIP
+          protoc --version
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Get changed packages
+        id: changed
+        run: |
+          # Get the list of changed packages in topological order and format it as a JSON array
+          PACKAGES=$(yarn lerna list --since origin/main --all --toposort | grep "@the9born/" | sed 's/@the9born\///g' | jq -R -s -c 'split("\n")[:-1]')
+          echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
+
+      - name: Build changed packages
+        if: steps.changed.outputs.packages != '[]'
+        run: |
+          # Build all changed packages in a single command respecting dependencies
+          yarn lerna run build --since origin/main --include-dependencies
+
+      - name: Test changed packages
+        if: steps.changed.outputs.packages != '[]'
+        run: |
+          # Parse the JSON array of packages
+          PACKAGES=$(echo '${{ steps.changed.outputs.packages }}' | jq -r '.[]')
+          while IFS= read -r package; do
+            echo "Testing @the9born/$package"
+            yarn lerna run test --scope "@the9born/$package"
+          done <<< "$PACKAGES" 
